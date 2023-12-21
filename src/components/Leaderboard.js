@@ -1,5 +1,12 @@
 
-import { useEffect, useState } from 'react';    
+import { useEffect, useState } from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 import axios from 'axios';
 
@@ -25,36 +32,36 @@ export function Leaderboard() {
     sortData(dataArray)
 
     return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Username</th>
-                        <th>GS</th>
-                        <th>GP</th>
-                        <th>W</th>
-                        <th>L</th>
-                        <th>K</th>
-                        <th>D</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Rank</TableCell>
+                        <TableCell>Username</TableCell>
+                        <TableCell>GS</TableCell>
+                        <TableCell>GP</TableCell>
+                        <TableCell>W</TableCell>
+                        <TableCell>L</TableCell>
+                        <TableCell>K</TableCell>
+                        <TableCell>D</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     {dataArray.map((row)=> (
-                        <tr key={row.Rank}>
-                            <td>{row.Rank}</td>
-                            <td>{row.username}</td>
-                            <td>{row.GameScore}</td>
-                            <td>{row.wins + row.losses}</td>
-                            <td>{row.wins}</td>
-                            <td>{row.losses}</td>
-                            <td>{row.kills}</td>
-                            <td>{row.deaths}</td>
-                        </tr>
+                        <TableRow key={row.Rank}>
+                            <TableCell>{row.Rank}</TableCell>
+                            <TableCell>{row.username}</TableCell>
+                            <TableCell>{row.GameScore}</TableCell>
+                            <TableCell>{row.wins + row.losses}</TableCell>
+                            <TableCell>{row.wins}</TableCell>
+                            <TableCell>{row.losses}</TableCell>
+                            <TableCell>{row.kills}</TableCell>
+                            <TableCell>{row.deaths}</TableCell>
+                        </TableRow>
                     ))}
-                </tbody>
-            </table>
-        </div>
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
 
